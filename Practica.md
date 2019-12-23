@@ -108,9 +108,91 @@ Quit the server with CONTROL-C.
 ![run mezzanine](images/aimg.ong)
 
 
-
 ## Personaliza la página (cambia el nombre al blog y pon tu nombre) y añade contenido (algún artículo con alguna imagen).
+
+Desde la página de administrador se modifica el nombre de la página en el apartado settings.
+
+![cambio de nombre](images/bimg.ong)
+
+Y se crea algún blog:
+
+![cambio de nombre](images/cimg.ong)
+![cambio de nombre](images/dimg.ong)
+
 
 ## Guarda los ficheros generados durante la instalación en un repositorio github. Guarda también en ese repositorio la copia de seguridad de la bese de datos.
 
+Se guardan los fichero:
+~~~
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ python3 manage.py dumpdata > db.json
+~~~
+
+Y se sube todo a un repositorio de GitHub.
+~~~
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git init
+Inicializado repositorio Git vacío en /home/paloma/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms/.git/
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git add *
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git commit -m 'subir contenido'
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git remote add origin git@github.com:PalomaR88/mezzanine.git
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git push -u origin master
+~~~
+
+
 ## Realiza el despliegue de la aplicación en tu entorno de producción (servidor web y servidor de base de datos en el cloud). Utiliza un entorno virtual. Como servidor de aplicación puedes usar gunicorn o uwsgi (crea una unidad systemd para gestionar este servicio). La aplicación será accesible en la url python.tunombre.gonzalonazareno.org.
+
+Se clona el repositorio:
+~~~
+[centos@salmorejo ~]$ git clone https://github.com/PalomaR88/mezzanine
+~~~
+
+Se instala python:
+~~~
+[centos@salmorejo ~]$ sudo dnf install python36 python36-devel
+~~~
+
+Se crea un entornio virtual:
+~~~
+[centos@salmorejo ~]$ python3.6 -m venv entorno
+[centos@salmorejo ~]$ source entorno/bin/activate
+(entorno) [centos@salmorejo ~]$ 
+(entorno) [centos@salmorejo mezzanine]$ pip install -r requirements.txt
+~~~
+
+Se crea la base de datos:
+~~~
+MariaDB [(none)]> create database pythoncms;
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [(none)]> create user python identified by 'python';
+Query OK, 0 rows affected (0.08 sec)
+
+MariaDB [(none)]> grant all privileges on pythoncms.* to python;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [(none)]> flush privileges;
+Query OK, 0 rows affected (0.04 sec)
+~~~
+
+~~~
+DATABASES = {
+    'default': {
+          'ENGINE': 'mysql.connector.django',
+          'NAME': 'pythoncms',
+          'USER': 'python',
+          'PASSWORD': 'python',
+          'HOST': 'sql.paloma.gonzalonazareno.org',
+          'PORT': '',
+    }
+}
+~~~
+~~~
+ALLOWED_HOSTS = ['python.paloma.gonzalonazareno.org']
+~~~
+
+~~~
+(entorno) [centos@salmorejo pythoncms]$ pip install mysql-connector-python
+Collecting mysql-connector-python
+~~~
+~~~
+(entorno) [centos@salmorejo pythoncms]$ python3 manage.py migrate
+~~~
