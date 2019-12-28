@@ -1,36 +1,39 @@
 # Instalación de aplicación python
 
-En esta tarea vamos a desplegar un CMS python . Hemos elegido Mezzanine, pero puedes elegir otro CMS python basado en django.
+En esta tarea vamos a desplegar un CMS python. Hemos elegido Mezzanine, pero puedes elegir otro CMS python basado en django.
 
 ## Instala el CMS en el entorno de desarrollo. Debes utilizar un entorno virtual.
 
 ### Creación del entorno virutal
 Se crea un entorno virtual:
 ~~~
-paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$ python3 -m venv mezzanine
-paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$ source mezzanine/bin/activate
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$  
+paloma@coatlicue:~/DISCO2/CICLO II$ python3 -m venv mezzanine
+paloma@coatlicue:~/DISCO2/CICLO II$ source mezzanine/bin/activate
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II$  
 ~~~
 
 A continuación se instala mezzanine:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$ pip install mezzanine
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ pip install mezzanine
 ~~~
+
+
+
 
 Se crea el fichero requetiments que contrendrá los paquetes:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$ pip freeze > requirements.txt
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ pip freeze > requirements.txt
 ~~~
 
 > Quizás antes hay que actualizar pip:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$ pip install --upgrade pip
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ pip install --upgrade pip
 ~~~
 
 De esta forma, el contenido de requeriment.txt es:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine$ cat requirements.txt 
-beautifulsoup4==4.8.1
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ cat requirements.txt 
+beautifulsoup4==4.8.2
 bleach==3.1.0
 certifi==2019.11.28
 chardet==3.0.4
@@ -43,7 +46,6 @@ idna==2.8
 Mezzanine==4.3.1
 oauthlib==3.1.0
 Pillow==6.2.1
-pkg-resources==0.0.0
 pytz==2019.3
 requests==2.22.0
 requests-oauthlib==1.3.0
@@ -59,17 +61,17 @@ webencodings==0.5.1
 ### Proyecto mezzanine
 Para crear el proyecto:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine$ mezzanine-project pythoncms
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ mezzanine-project python_iaw
 ~~~
 
 Y la base de datos:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine$ python3 pythoncms/manage.py migrate
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ python3 python_iaw/manage.py migrate
 ~~~
 
 Se crear el superuser:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine$ python3 pythoncms/manage.py createsuperuser
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ python3 python_iaw/manage.py createsuperuser
 Username (leave blank to use 'paloma'): 
 Email address: palomagarciacampon08@gmail.com
 Password: 
@@ -79,7 +81,7 @@ Superuser created successfully.
 
 Y se abre el servidor:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine$ python3 pythoncms/manage.py runserver
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ python3 python_iaw/manage.py runserver
               .....
           _d^^^^^^^^^b_
        .d''           ``b.
@@ -99,8 +101,8 @@ Y se abre el servidor:
 Performing system checks...
 
 System check identified no issues (0 silenced).
-December 20, 2019 - 11:43:02
-Django version 1.11.27, using settings 'pythoncms.settings'
+December 27, 2019 - 20:08:05
+Django version 1.11.27, using settings 'python_iaw.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ~~~
@@ -122,19 +124,18 @@ Y se crea algún blog:
 
 ## Guarda los ficheros generados durante la instalación en un repositorio github. Guarda también en ese repositorio la copia de seguridad de la bese de datos.
 
-Se guardan los fichero:
+Se realiza una copia de la base de datos en un fichero .json:
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ python3 manage.py dumpdata > db.json
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine$ python3 python_iaw/manage.py dumpdata > python_iaw/CopiaBD.json
 ~~~
 
 Y se sube todo a un repositorio de GitHub.
 ~~~
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git init
-Inicializado repositorio Git vacío en /home/paloma/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms/.git/
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git add *
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git commit -m 'subir contenido'
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git remote add origin git@github.com:PalomaR88/mezzanine.git
-(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/Maquinas-claud/mezzanine/mezzanine/pythoncms$ git push -u origin master
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine/python_iaw$ git init
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine/python_iaw$ git add -f *
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine/python_iaw$ git commit -m "Subir fichero aplicaciones cms python"
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine/python_iaw$ git remote add origin git@github.com:PalomaR88/python_iaw.git
+(mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine/python_iaw$ git push -u origin master
 ~~~
 
 
@@ -142,7 +143,7 @@ Inicializado repositorio Git vacío en /home/paloma/DISCO2/CICLO II/Maquinas-cla
 
 Se clona el repositorio:
 ~~~
-[centos@salmorejo ~]$ git clone https://github.com/PalomaR88/mezzanine
+[centos@salmorejo ~]$ git clone https://github.com/PalomaR88/python_iaw.git
 ~~~
 
 Se instala python:
@@ -150,13 +151,18 @@ Se instala python:
 [centos@salmorejo ~]$ sudo dnf install python36 python36-devel
 ~~~
 
-Se crea un entornio virtual:
+Se crea el entorno virtual:
 ~~~
 [centos@salmorejo ~]$ python3.6 -m venv entorno
 [centos@salmorejo ~]$ source entorno/bin/activate
 (entorno) [centos@salmorejo ~]$ 
-(entorno) [centos@salmorejo mezzanine]$ pip install -r requirements.txt
 ~~~
+
+Se instala todos los paquetes que aparecen en requirement.txt:
+~~~
+(entorno) [centos@salmorejo python_iaw]$ pip install -r requirements.txt
+~~~
+
 
 Se crea la base de datos:
 ~~~
@@ -173,6 +179,7 @@ MariaDB [(none)]> flush privileges;
 Query OK, 0 rows affected (0.04 sec)
 ~~~
 
+En el fichero settings.py se modifican los siguientes valores:
 ~~~
 DATABASES = {
     'default': {
@@ -189,10 +196,12 @@ DATABASES = {
 ALLOWED_HOSTS = ['python.paloma.gonzalonazareno.org']
 ~~~
 
+Se instala el paquete necesario para que python se conecte a mysql:
 ~~~
-(entorno) [centos@salmorejo pythoncms]$ pip install mysql-connector-python
-Collecting mysql-connector-python
+(entorno) [centos@salmorejo python_iaw]$ pip install mysql-connector-python
 ~~~
+
+Y se comienza la migración:
 ~~~
 (entorno) [centos@salmorejo pythoncms]$ python3 manage.py migrate
-~~~
+(entorno) [centos@salmorejo python_iaw]$ python3 manage.py loaddata CopiaBD.json 
