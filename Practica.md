@@ -104,19 +104,19 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ~~~
 
-![run mezzanine](images/aimg.ong)
+![run mezzanine](images/aimg.png)
 
 
 ## Personaliza la página (cambia el nombre al blog y pon tu nombre) y añade contenido (algún artículo con alguna imagen).
 
 Desde la página de administrador se modifica el nombre de la página en el apartado settings.
 
-![cambio de nombre](images/bimg.ong)
+![cambio de nombre](images/bimg.png)
 
 Y se crea algún blog:
 
-![cambio de nombre](images/cimg.ong)
-![cambio de nombre](images/dimg.ong)
+![cambio de nombre](images/cimg.png)
+![cambio de nombre](images/dimg.png)
 
 
 ## Guarda los ficheros generados durante la instalación en un repositorio github. Guarda también en ese repositorio la copia de seguridad de la bese de datos.
