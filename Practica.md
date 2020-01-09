@@ -135,6 +135,7 @@ Y se sube todo a un repositorio de GitHub.
 (mezzanine) paloma@coatlicue:~/DISCO2/CICLO II/mezzanine/python_iaw$ git push -u origin master
 ~~~
 
+El repositorio de gitHub es el [siguiente](https://github.com/PalomaR88/python_iaw).
 
 ## Realiza el despliegue de la aplicación en tu entorno de producción (servidor web y servidor de base de datos en el cloud). Utiliza un entorno virtual. Como servidor de aplicación puedes usar gunicorn o uwsgi (crea una unidad systemd para gestionar este servicio). La aplicación será accesible en la url python.tunombre.gonzalonazareno.org.
 
