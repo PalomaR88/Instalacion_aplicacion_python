@@ -418,9 +418,10 @@ python          IN  CNAME   salmorejo
 ~~~
 
 ## Reiniciar gunicorn
+~~~
 [centos@salmorejo ~]$ sudo systemctl restart gunicorn.socket
 [centos@salmorejo ~]$ sudo systemctl restart gunicorn
-
+~~~
 
 ### Comprobación
 ![eimg.png](images/eimg.png)
